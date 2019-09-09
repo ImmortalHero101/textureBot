@@ -4,6 +4,7 @@ const fs = require("fs"),
       db = mongoose.connection,
       dbHandler = require("node-json-db"),
       database = new dbHandler("./data/botDatabase", true),
+      rawDB = database.getData(`/`),
       client = new Discord.Client(),
       Schema = mongoose.Schema,
       {TOKEN} = process.env,
@@ -11,7 +12,7 @@ const fs = require("fs"),
       ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
 let url = '127.0.0.1:27017/' + (process.env.OPENSHIFT_APP_NAME || "data");
-console.log(database.getData(`/`));
+console.log();
 console.log(url);
 console.log(ip, port);
 if (process.env.OPENSHIFT_MONGODB_DB_URL) {
@@ -35,6 +36,8 @@ class Submission {
 Object.assign(client, {
   commands: new Discord.Collection(),
   classes: {Submission}
+  rawDB,
+  db: {handler:database}
 });
 
 fs.readdir("./events/", (err, eventFiles) => {
