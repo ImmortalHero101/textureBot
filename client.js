@@ -1,6 +1,7 @@
 const fs = require("fs"),
       Discord = require("discord.js"),
       mongoose = require("mongoose"),
+      database = mongoose.connection 
       client = new Discord.Client(),
       Schema = mongoose.Schema,
       TOKEN = process.env.TOKEN,
@@ -13,37 +14,37 @@ let SubmissionSchema = new Schema({
   instanceName: String,
   instanceType: String, // Entity, Block, Item
   instanceURL: {type: String, default: ""},
-  instanceID: Integer,
+  instanceID: Number,
   author: String, // Author ID
-  creation: {type: Integer, default: Date.now()},
-  lastUpdate: {type: Integer, default: 0},
-  updates: {type: Integer, default: 0},
+  creation: {type: Number, default: Date.now()},
+  lastUpdate: {type: Number, default: 0},
+  updates: {type: Number, default: 0},
   suggestions: [String, String] // User ID, Suggestion
 });
 
 client.dataModel = mongoose.model("dataModel", SubmissionSchema);
 
-fs.readdir("./events/", (err, eventFiles) => {
-  if (err) return console.error(err);
-  for (eventFile of eventFiles) {
-    if (!eventFile.endsWith(".js")) continue;
-    try {
-      client.on(eventFile.split(".")[0], require(`./events/${eventFile}`));
-    } catch (e) {throw e;}
-  }
-});
+mongoose.connect('mongodb://localhost/botDatabase', {useNewUrlParser: true});
 
+database.on("open", function() {
+  console.log("Database connected!");
+  fs.readdir("./events/", (err, eventFiles) => {
+    if (err) return console.error(err);
+    for (eventFile of eventFiles) {
+      if (!eventFile.endsWith(".js")) continue;
+      try {
+        client.on(eventFile.split(".")[0], require(`./events/${eventFile}`));
+      } catch (e) {throw e;}
+    }
+  });
 
-fs.readdir("./commands/", (err, commandFiles) => {
-  if (err) throw err;
-  for (commandFile of commandFiles) {
-    if (!commandFile.endsWith(".js")) continue;
-    client.commands.set(commandFile.split(".")[0], require(`./commands/${commandFile}`));
-  }
-});
+  fs.readdir("./commands/", (err, commandFiles) => {
+    if (err) throw err;
+    for (commandFile of commandFiles) {
+      if (!commandFile.endsWith(".js")) continue;
+      client.commands.set(commandFile.split(".")[0], require(`./commands/${commandFile}`));
+    }
+  });
 
-client.login(TOKEN);
-
-server.listen(server_port, server_ip_address, function () {
-  console.log( "Listening on " + server_ip_address + ", port " + server_port )
+  client.login(TOKEN).then(()=>console.log("Client logged in!"));
 });
