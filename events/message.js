@@ -10,6 +10,7 @@ module.exports = function(client, message) {
     if (!selectedCommand) return;
     selectedCommand(client, message, splitArgs.join(" "));
   } catch (e) {
+    console.error(e);
     return message.channel.send("An error occured while running the command. Please contact the mods about this issue.");
   }
 }
