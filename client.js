@@ -6,7 +6,7 @@ const fs = require("fs"),
       database = new dbHandler("./data/botDatabase", true),
       client = new Discord.Client(),
       Schema = mongoose.Schema,
-      TOKEN = process.env.TOKEN,
+      {TOKEN} = process.env,
       port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
       ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
@@ -18,27 +18,26 @@ if (process.env.OPENSHIFT_MONGODB_DB_URL) {
     url = process.env.OPENSHIFT_MONGODB_DB_URL + process.env.OPENSHIFT_APP_NAME;
 }
 
-client.commands = new Discord.Collection();
+class Submission {
+  constructor(authorID, instanceName, instanceType, instanceURL = "") {
+    this.instanceName = instanceName,
+    this.instanceType = instanceType, // Entity, Block, Item
+    this.instanceURL = instanceURL,
+    this.instanceID = Math.floor(Math.random() * 89999 + 10000),
+    this.authorID = authorID, // Author ID
+    this.creation = Date.now(),
+    this.lastUpdate = 0,
+    this.updates = 0,
+    this.suggestions = [] // User ID, Suggestion
+  }
+}
 
-let SubmissionSchema = new Schema({
-  instanceName: String,
-  instanceType: String, // Entity, Block, Item
-  instanceURL: {type: String, default: ""},
-  instanceID: Number,
-  author: String, // Author ID
-  creation: {type: Number, default: Date.now()},
-  lastUpdate: {type: Number, default: 0},
-  updates: {type: Number, default: 0},
-  suggestions: [String, String] // User ID, Suggestion
+Object.assign(client, {
+  commands: new Discord.Collection(),
+  classes: {Submission}
 });
 
-client.dataModel = mongoose.model("dataModel", SubmissionSchema);
-
-mongoose.connect(`mongodb://localhost:27017/data`, {useNewUrlParser: true});
-
-db.on("open", function() {
-  console.log("Database connected!");
-  fs.readdir("./events/", (err, eventFiles) => {
+fs.readdir("./events/", (err, eventFiles) => {
     if (err) return console.error(err);
     for (eventFile of eventFiles) {
       if (!eventFile.endsWith(".js")) continue;
@@ -57,4 +56,3 @@ db.on("open", function() {
   });
 
   client.login(TOKEN).then(()=>console.log("Client logged in!"));
-});
