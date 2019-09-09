@@ -16,7 +16,7 @@ module.exports = async function (client, message, contents) {
       items = data.filter(texture => instanceType === "item");
   return message.channel.send({embed:{
     author: {name: message.member.displayName, icon_url: message.author.displayAvatarURL},
-    title: `Submissions Menu | View `${targetMember.displayName}'s submissions` Submissions`,
+    title: `Submissions Menu | View ${targetMember.displayName}'s Submissions`,
     fields: [
       {name: "Entities", value: entities.length ? `${entities.map(entity => `▫️ ${entity.instanceName}: ${entity.instanceID}`).join("\n")}\n` : "*No entries*"},
       {name: "Block", value: blocks.length ? `**Blocks:**\n${blocks.map(block => `▫️ ${block.instanceName}: ${block.instanceID}`).join("\n")}\n` : "*No entries*"},
