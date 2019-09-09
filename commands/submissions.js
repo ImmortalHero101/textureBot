@@ -2,7 +2,8 @@ module.exports = function (client, message, contents) {
   let targetMember = message.member;
   if (content) {
     let {matchedID} = (content.match(/(<matchedID>?\d+)|<@!?(<matchedID>?\d+)>/)||{groups:{}}).groups;
-    if (!matchedContent && targetMember = message.guild.members.get(matchedID)) return message.channel.send("I could not find the user you mentioned!");
+    targetMember = message.guild.members.get(matchedID)
+    if (!targetMember) return message.channel.send("I could not find the user you mentioned!");
   }
   let data = client.rawDB.Submissions.find(submission => submission.authorID === targetMember.user.id);
   if (!data.length) return message.channel.send({embed:{
