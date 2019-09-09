@@ -16,9 +16,11 @@ module.exports = async function (client, message, contents) {
       items = data.filter(texture => instanceType === "item");
   return message.channel.send({embed:{
     author: {name: message.member.displayName, icon_url: message.author.displayAvatarURL},
-    title: "Submissions Menu | View Submissions",
+    title: `Submissions Menu | View `${targetMember.displayName}'s submissions` Submissions`,
     fields: [
-      {name: `${targetMember.displayName}'s submissions`, value: `${entities.length ? `**Entities:**\n${entities.map(entity => `▫️ ${entity.instanceName}: ${entity.instanceID}`).join("\n")}\n` : ""}${blocks.length ? `**Blocks:**\n${blocks.map(block => `▫️ ${block.instanceName}: ${block.instanceID}`).join("\n")}\n` : ""}${items.length ? `**Items:**\n${items.map(item => `▫️ ${item.instanceName}: ${item.instanceID}`).join("\n")}\n` : ""}`},
+      {name: "Entities", value: entities.length ? `${entities.map(entity => `▫️ ${entity.instanceName}: ${entity.instanceID}`).join("\n")}\n` : "*No entries*"},
+      {name: "Block", value: blocks.length ? `**Blocks:**\n${blocks.map(block => `▫️ ${block.instanceName}: ${block.instanceID}`).join("\n")}\n` : "*No entries*"},
+      {name: "Items", value: items.length ? `**Items:**\n${items.map(item => `▫️ ${item.instanceName}: ${item.instanceID}`).join("\n")}\n` : "*No entries*"}
     ],
     color: parseInt("2578FF", 16)
   }});
