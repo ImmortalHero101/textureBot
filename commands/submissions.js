@@ -1,19 +1,19 @@
-module.exports = async function (client, message, contents) {
+module.exports = function (client, message, contents) {
   let targetMember = message.member;
   if (content) {
     let {matchedID} = (content.match(/(<matchedID>?\d+)|<@!?(<matchedID>?\d+)>/)||{groups:{}}).groups;
     if (!matchedContent && targetMember = message.guild.members.get(matchedID)) return message.channel.send("I could not find the user you mentioned!");
   }
-  let data = [...(await client.dataModel.find({author: targetMember.user.id}))];
+  let data = client.rawDB.Submissions.find(submission => submission.authorID === targetMember.user.id);
   if (!data.length) return message.channel.send({embed:{
     author: {name: message.member.displayName, icon_url: message.author.displayAvatarURL},
     title: "Submissions Menu | View Submissions",
     description: "You have no submissions!",
     color: parseInt("2578FF", 16)
   }});
-  let entities = data.filter(texture => instanceType === "entity"),
-      blocks = data.filter(texture => instanceType === "block"),
-      items = data.filter(texture => instanceType === "item");
+  let entities = data.filter(texture => texture.instanceType === "entity"),
+      blocks = data.filter(texture => texture.instanceType === "block"),
+      items = data.filter(texture => texture.instanceType === "item");
   return message.channel.send({embed:{
     author: {name: message.member.displayName, icon_url: message.author.displayAvatarURL},
     title: `Submissions Menu | View ${targetMember.displayName}'s Submissions`,
