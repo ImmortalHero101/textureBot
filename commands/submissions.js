@@ -1,4 +1,4 @@
-module.exports = function (client, message, contents) {
+module.exports = function (client, message, content) {
   let targetMember = message.member;
   if (content) {
     let {matchedID} = (content.match(/(<matchedID>?\d+)|<@!?(<matchedID>?\d+)>/)||{groups:{}}).groups;
