@@ -35,7 +35,7 @@ class Submission {
 
 Object.assign(client, {
   commands: new Discord.Collection(),
-  classes: {Submission}
+  classes: {Submission},
   rawDB,
   db: {handler:database}
 });
