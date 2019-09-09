@@ -10,14 +10,15 @@ const fs = require("fs"),
 client.commands = new Discord.Collection();
 
 let SubmissionSchema = new Schema({
+  instanceName: String,
   instanceType: String, // Entity, Block, Item
-  suggestions: [String, String], // User ID, Suggestion
   instanceURL: {type: String, default: ""},
   instanceID: Integer,
+  author: String, // Author ID
   creation: {type: Integer, default: Date.now()},
   lastUpdate: {type: Integer, default: 0},
   updates: {type: Integer, default: 0},
-  author: String // Author ID
+  suggestions: [String, String] // User ID, Suggestion
 });
 
 client.dataModel = mongoose.model("dataModel", SubmissionSchema);
