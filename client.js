@@ -45,7 +45,7 @@ fs.readdir("./events/", (err, eventFiles) => {
     for (eventFile of eventFiles) {
       if (!eventFile.endsWith(".js")) continue;
       try {
-        client.on(eventFile.split(".")[0], require(`./events/${eventFile}`));
+        client.on(eventFile.split(".")[0], require(`./events/${eventFile}`).bind(null, client));
       } catch (e) {throw e;}
     }
   });
