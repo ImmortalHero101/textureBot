@@ -1,7 +1,9 @@
 const fs = require("fs"),
       Discord = require("discord.js"),
       mongoose = require("mongoose"),
-      database = mongoose.connection 
+      database = mongoose.connection,
+      dbHandler = require("node-json-db"),
+      database = new dbHandler("./data/botDatabase", true),
       client = new Discord.Client(),
       Schema = mongoose.Schema,
       TOKEN = process.env.TOKEN,
@@ -9,6 +11,7 @@ const fs = require("fs"),
       ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
 let url = '127.0.0.1:27017/' + (process.env.OPENSHIFT_APP_NAME || "data");
+console.log(database.getData(`/`));
 console.log(url);
 console.log(ip, port);
 if (process.env.OPENSHIFT_MONGODB_DB_URL) {
