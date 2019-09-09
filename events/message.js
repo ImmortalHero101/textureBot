@@ -4,7 +4,7 @@ module.exports = function(client, message) {
   try {
     let selectedCommand = client.commands.get(commandName);
     if (!selectedCommand) return;
-    selectedCommand(client, message, splitArgs);
+    selectedCommand(client, message, splitArgs.join(" "));
   } catch (e) {
     return message.channel.send("An error occured while running the command. Please contact the mods about this issue.");
   }
