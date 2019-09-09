@@ -24,7 +24,7 @@ let SubmissionSchema = new Schema({
 
 client.dataModel = mongoose.model("dataModel", SubmissionSchema);
 
-mongoose.connect('mongodb://localhost/botDatabase', {useNewUrlParser: true});
+mongoose.connect(`mongodb://${ip}:${port}/botDatabase`, {useNewUrlParser: true});
 
 database.on("open", function() {
   console.log("Database connected!");
