@@ -8,8 +8,7 @@
     "mongoose": "^5.6.13",
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
-    "mongodb": "^2.1.16",
-    "object-assign":"4.1.0"
+    "mongodb": "^2.1.16"
   },
   "scripts": {
     "start": "node client.js",
