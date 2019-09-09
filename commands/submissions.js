@@ -5,7 +5,7 @@ module.exports = function (client, message, content) {
     targetMember = message.guild.members.get(matchedID)
     if (!targetMember) return message.channel.send("I could not find the user you mentioned!");
   }
-  let data = client.rawDB.Submissions.find(submission => submission.authorID === targetMember.user.id);
+  let data = client.rawDB.submissions.find(submission => submission.authorID === targetMember.user.id);
   if (!data.length) return message.channel.send({embed:{
     author: {name: message.member.displayName, icon_url: message.author.displayAvatarURL},
     title: "Submissions Menu | View Submissions",
