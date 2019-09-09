@@ -22,8 +22,7 @@ fs.readdir("./commands/", (err, commandFiles) => {
   if (err) throw err;
   for (commandFile of commandFiles) {
     if (!commandFile.endsWith(".js")) continue;
-    let commandObj = require(`./commands/${commandFile}`);
-    client.commands.set(commandFile.split(".")[0], commandObj);
+    client.commands.set(commandFile.split(".")[0], require(`./commands/${commandFile}`));
   }
 });
 
