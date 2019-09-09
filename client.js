@@ -11,8 +11,9 @@ client.commands = new Discord.Collection();
 
 let SubmissionSchema = new Schema({
   instanceType: String, // Entity, Block, Item
-  suggestions: [String, String] // User ID, Suggestion
-  instanceURL: {type: String, default: ""}
+  suggestions: [String, String], // User ID, Suggestion
+  instanceURL: {type: String, default: ""},
+  instanceID: Integer,
   creation: {type: Integer, default: Date.now()},
   lastUpdate: {type: Integer, default: 0},
   updates: {type: Integer, default: 0},
