@@ -8,7 +8,7 @@ const fs = require("fs"),
       port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
       ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
-let url = '127.0.0.1:27017/' + (process.env.OPENSHIFT_APP_NAME || "textureBot");
+let url = '127.0.0.1:27017/' + (process.env.OPENSHIFT_APP_NAME || "data");
 console.log(url);
 console.log(ip, port);
 if (process.env.OPENSHIFT_MONGODB_DB_URL) {
