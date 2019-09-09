@@ -9,7 +9,7 @@ const fs = require("fs"),
       ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
 let url = '127.0.0.1:27017/' + process.env.OPENSHIFT_APP_NAME;
-
+console.log(url);
 if (process.env.OPENSHIFT_MONGODB_DB_URL) {
     url = process.env.OPENSHIFT_MONGODB_DB_URL + process.env.OPENSHIFT_APP_NAME;
 }
