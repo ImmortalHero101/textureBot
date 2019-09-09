@@ -1,7 +1,7 @@
 const fs = require("fs"),
       Discord = require("discord.js"),
       mongoose = require("mongoose"),
-      database = mongoose.connection,
+      db = mongoose.connection,
       dbHandler = require("node-json-db"),
       database = new dbHandler("./data/botDatabase", true),
       client = new Discord.Client(),
@@ -36,7 +36,7 @@ client.dataModel = mongoose.model("dataModel", SubmissionSchema);
 
 mongoose.connect(`mongodb://${url}`, {useNewUrlParser: true});
 
-database.on("open", function() {
+db.on("open", function() {
   console.log("Database connected!");
   fs.readdir("./events/", (err, eventFiles) => {
     if (err) return console.error(err);
