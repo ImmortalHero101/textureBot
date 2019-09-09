@@ -4,6 +4,7 @@
   "description": "Texture Bot for communimate",
   "main": "client.js",
   "dependencies": {
+    "discord.js": "^11.5.1",
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
     "ejs": "^2.4.1",
