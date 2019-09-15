@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Texture Bot for communimate",
   "dependencies": {
+    "next": "^9.0.5",
     "discord.js": "^11.5.1",
     "node-json-db": "^0.9.1",
     "mongoose": "^5.6.13",
