@@ -18,5 +18,6 @@
     "type": "git",
     "url": "http://github.com/ImmortalHero101/textureBot.git"
   },
-  "homepage": "http://github.com/ImmortalHero101/textureBot"
+  "homepage": "http://github.com/ImmortalHero101/textureBot",
+  "licence": "UNLICENCED"
 }
