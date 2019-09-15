@@ -20,7 +20,7 @@ if (process.env.OPENSHIFT_MONGODB_DB_URL) {
 }
 db.connect("mongodb+srv://botAdmin:botAdmin123@botdata-gkdtk.gcp.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true}); 
 
-db.on("open" () => console.log("Successfully contacted to mongodb!!"));
+db.on("open", () => console.log("Successfully contacted to mongodb!!"));
 
 class Submission {
   constructor(authorID, instanceName, instanceType, instanceURL = "") {
