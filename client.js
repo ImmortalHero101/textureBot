@@ -59,3 +59,5 @@ fs.readdir("./events/", (err, eventFiles) => {
   });
 
   client.login(TOKEN).then(()=>console.log("Client logged in!"));
+
+  require('http').createServer().listen(3000)
