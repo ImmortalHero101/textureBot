@@ -18,6 +18,9 @@ console.log(ip, port);
 if (process.env.OPENSHIFT_MONGODB_DB_URL) {
     url = process.env.OPENSHIFT_MONGODB_DB_URL + process.env.OPENSHIFT_APP_NAME;
 }
+db.connect("mongodb+srv://botAdmin:botAdmin123@botdata-gkdtk.gcp.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true}); 
+
+db.on("open" () => console.log("Successfully contacted to mongodb!!"));
 
 class Submission {
   constructor(authorID, instanceName, instanceType, instanceURL = "") {
