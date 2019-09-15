@@ -1,21 +1,17 @@
 {
   "name": "textureBot",
   "version": "0.0.1",
+  "main": "client.js"
   "description": "Texture Bot for communimate",
   "dependencies": {
-    "next": "^9.0.5",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
     "discord.js": "^11.5.1",
     "node-json-db": "^0.9.1",
     "mongoose": "^5.6.13",
     "mongodb": "^2.1.16"
   },
   "scripts": {
-    "dev": "next",
     "start": "node client.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node client.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
