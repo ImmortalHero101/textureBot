@@ -9,6 +9,7 @@
     "mongodb": "^2.1.16"
   },
   "scripts": {
+    "dev": "next",
     "start": "node client.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "next build"
