@@ -1,7 +1,7 @@
 {
   "name": "textureBot",
   "version": "0.0.1",
-  "main": "client.js"
+  "main": "client.js",
   "description": "Texture Bot for communimate",
   "dependencies": {
     "discord.js": "^11.5.1",
